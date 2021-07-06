@@ -2,13 +2,35 @@
     background-image: linear-gradient(to bottom right
     , rgba($color-primary-light, 0.801)
     ,rgba($color-primary-dark, 0.801))
-    ,url(../img/hero.jpg);
-    height: 95vh;
+    ,url(../img/hero-small.jpg);
+    height: 85vh;
     background-size: cover;
     background-position: top;
     position: relative;
+    
+    //feature query
+    @supports ((clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)) or (-webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%))){
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+        height: 85vh;
+    }
 
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+    @media only screen and (min-resolution: 192dpi) and (min-width: 37.5rem),
+    (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5rem)     //600px
+    , (min-width: 125rem){    //2000px
+        background-image: linear-gradient(to bottom right
+        , rgba($color-primary-light, 0.801)
+        ,rgba($color-primary-dark, 0.801))
+        ,url(../img/hero.jpg);
+    }
+
+
+    @include respond(tab-port){
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
+
     &__logo-box{
         position: absolute;
         top: 4rem;
